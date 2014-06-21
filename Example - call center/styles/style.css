@@ -1,0 +1,157 @@
+
+body {
+	font-family: arial;
+}
+
+::-webkit-scrollbar { 
+	width:10px;
+	height:10px;
+}
+::-webkit-scrollbar-track-piece  {
+	background-color:#333;
+}
+::-webkit-scrollbar-thumb:vertical {
+	height:10px;
+	background-color:#444;
+}
+::-webkit-scrollbar-thumb:hover {
+	background-color:#33b5e5;
+}
+
+#service_message_block {
+	padding: 10px;
+	clear: both;
+}
+#calls_hint {
+	font-size: 14px;
+}
+
+#call_button {
+	padding: 10px;
+	float: left;
+}
+.room_button {
+	padding: 10px;
+	margin: 3px;
+	float: left;
+	clear: both;
+}
+
+#call_popup {
+	display: none;
+	border: 1px solid;
+	overflow: hidden;
+	margin: auto;
+	width: 80%;
+	
+	background: #444;
+	color: #999;
+	padding: 10px;
+	position: fixed;
+	left: 10%;
+	
+	box-shadow: 0px 0px 30px rgba(0, 0, 0, 0.79);
+	z-index: 3;
+}
+#popup_videos {
+	
+}
+#popup_controls {
+	height: 50px;
+}
+#popup_usertokens {
+	height: 32px;
+}
+
+#popup_usertokens, #popup_videos, #popup_controls {
+	clear: both;
+	overflow: hidden;
+}
+
+#self_usertoken, #remote_usertoken {
+	height: 100%;
+	width: 49%;
+	padding-left: 5px;
+	font-size: 14px;
+}
+#self_usertoken {
+	float: left;
+}
+#remote_usertoken {
+	float: right;
+}
+
+.popup_video_block {
+	height: 100%;
+	width: 49%;
+	overflow: hidden;
+}
+#self_video {
+	float: left;
+}
+#remote_video {
+	float: right;
+}
+
+#call_messages {
+	float: right;
+	width: 49%;
+	height: 100%;
+}
+#messages_list {
+	float: right;
+	overflow: auto;
+	height: 100%;
+	width: 100%;
+	padding-left: 3px;
+	font-size: 13px;
+}
+#call_waiting_img {
+	display: none;
+	float: left;
+	position: absolute;
+	margin-top: -20%;
+	margin-left: 20%;
+}
+
+#controls_block {
+	float: left;
+	width: 49%;
+	height: 100%;
+}
+
+#disconnect, #switch_audio, #switch_video {
+	float: left;
+	height: 40px;
+	line-height: 40px;
+	width: 33.3%;
+	text-align: center;
+	padding-top: 5px;
+	padding-bottom: 5px;
+	
+	background-size: 50px;
+	background-repeat: no-repeat;
+	background-position: 50%;
+}
+#disconnect {
+	color: #C04343;
+}
+#switch_audio {
+	background-image: url(http://googledrive.com/host/0B2JzwD3Qc8A8SW1iSHNQTFVIaHc);
+}
+#switch_video {
+	background-image: url(http://googledrive.com/host/0B2JzwD3Qc8A8MG1TWmJPTG5jLU0);
+}
+
+
+.button_block {
+	background: #333;
+	color: #c3c3c3;
+	overflow: hidden;
+	cursor: pointer;
+}
+.button_block:hover {
+	background: #00aeee;
+	color: #ffffff;
+}
+
