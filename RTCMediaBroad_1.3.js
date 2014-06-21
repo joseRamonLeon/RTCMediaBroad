@@ -416,9 +416,6 @@ var Broadcasting = function (config) {
 					});
 			}
 		}
-		else {
-			//
-		}
 	}
 	
 	function openSubSocket(nConfig) {
