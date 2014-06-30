@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<style>
+	#data_channel_block {
+		display: none;
+	}
+	a {
+		display: block;
+		clear: both;
+	}
+</style>
+
+<div>
+	<b>Simplest dataChannel test example</b><br/>
+	Audio conferencing & data broadcasting	
+	<hr/>
+</div>
+
+<button id="create">Create room</button>
+<button id="disconnect">Disconnect</button>
+<a href="./index.html" target="_blank">Open in new tab</a>
+<br/>
+
+<div id="data_channel_block">
+	<input type="file" id="file" />
+	<input type="button" id="send_file" value="Send file" />
+	<span id="send_file_mess"></span>
+	<br/>
+	<input type="text" id="text_data" />
+	<input type="button" id="send_data" value="Send text data" />
+</div>
+<div id="data_list">After successful connection you will be able to exchange data</div>
+<br/>
+
+
+
+<script src="https://cdn.firebase.com/js/client/1.0.11/firebase.js"></script>
+<script src="https://googledrive.com/host/0B2JzwD3Qc8A8cUJaRGcxOGd1a0U#RTCMediaBroad_2.0.js"></script>
+
+<script src=./index.js></script>
+
+</body>
+</html>

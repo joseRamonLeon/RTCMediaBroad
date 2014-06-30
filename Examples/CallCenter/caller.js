@@ -1,6 +1,6 @@
 
 
-var FB_addr = "js-test.firebaseio.com/RTCPeer-test/";
+var FB_addr = "https://js-test.firebaseio.com/RTCMediaBroad/videoBroadcasting/";
 var FB = new Firebase(FB_addr);
 var Broadcast;
 var constraints = {
@@ -12,8 +12,7 @@ var Channel = "channel";
 var channelSocket = FB.child(Channel).child("socket");
 
 /*UI: */
-var roomList = document.querySelector("#room_list");
-var roomListHint = document.querySelector("#calls_hint");
+var callButton = document.querySelector("#call_button");
 var endCallButton = document.querySelector("#disconnect");
 var audioButton = document.querySelector("#switch_audio");
 var videoButton = document.querySelector("#switch_video");
@@ -52,7 +51,6 @@ var socketConfig = {
 		console.log("onUserConnected", userToken, ip, mediaElem);
 		remoteUserToken_block.innerHTML = userToken + "<br/>" + ip;
 		
-		remoteVideo_block.innerHTML = "";
 		remoteVideo_block.appendChild(mediaElem);
 		mediaElem.controls = "true";
 		mediaElem.style.width = "100%";
@@ -63,38 +61,10 @@ var socketConfig = {
 	onUserDisconnected: function(userToken, ip) {
 		console.log("onUserDisconnected", userToken, ip);
 		Broadcast.disconnect();
-		Broadcast = Broadcasting(socketConfig);
 		
 		closePopup();
 		messages_block.textContent = Strings.callEnd;
 		newLogMessage();
-	},
-	onRoomFounded: function(roomToken, adminToken) {
-		console.log("onRoomFounded", roomToken, adminToken);
-		roomListHint.innerHTML = "";
-		var but = document.createElement("div");
-		but.className = "button_block room_button";
-		but.setAttribute("room", roomToken);
-		but.setAttribute("admin", adminToken);
-		but.innerHTML = roomToken;
-		roomList.appendChild(but);
-		but.onclick = function(e) {
-			var b = e.target;
-			var room = b.getAttribute("room");
-			var admin = b.getAttribute("admin");
-			connectToRoom(room, admin);
-		};
-	},
-	onRoomClosed: function(roomToken, adminToken) {
-		console.log("onRoomClosed", roomToken, adminToken);
-		var but = document.querySelector("[room='" + roomToken + "']");
-		if (but) {
-			roomList.removeChild(but);
-			
-			if (roomList.children.length == 0) {
-				roomListHint.innerHTML = Strings.noCalls;
-			}
-		}
 	},
 	onGetMediaSuccess: function(myToken, mediaElem) {
 		console.log("onGetMediaSuccess", myToken, mediaElem);
@@ -117,27 +87,21 @@ var socketConfig = {
 	}
 };
 
-endCallButton.onclick = function() {
-	Broadcast.disconnect();
+callButton.onclick = function(e) {
 	Broadcast = Broadcasting(socketConfig);
-	
-	closePopup();
-};
-function connectToRoom(roomToken, adminToken) {
-	Broadcast.connect(roomToken, adminToken);
+	Broadcast.create();
 	
 	openPopup();
-	newLogMessage(Strings.connecting);
 	newLogMessage(Strings.confirmAccess);
+};
+
+endCallButton.onclick = function() {
+	Broadcast.disconnect();
 	
-	//send message about closing room
-		//its necessary to hide answered room from other users: 
-	channelSocket.push({
-			roomToken: roomToken,
-			broadcaster: adminToken,
-			closed: true
-		});
-}
+	closePopup();
+	messages_block.textContent = Strings.callEnd;
+	newLogMessage();
+};
 
 function openPopup() {
 	messages_block.innerHTML = "";
@@ -154,6 +118,7 @@ function closePopup() {
 	waitPic.style.display = "none";
 	remoteVideo_block.innerHTML = "";
 	selfVideo_block.innerHTML = "";
+	selfUserToken_block.innerHTML = "";
 	remoteUserToken_block.innerHTML = "";
 }
 function newLogMessage(message) {
@@ -194,9 +159,5 @@ videoButton.onclick = function() {
 	}
 	videoButton.style.backgroundImage = "url(" + img + ")";
 };
-
-
-Broadcast = Broadcasting(socketConfig);
-
 
 
