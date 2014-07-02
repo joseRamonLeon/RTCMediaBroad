@@ -76,7 +76,7 @@ userCount()	-	get number of connected users
 switchAudio(state)	-	switch on/off audio sreaming. Audio stream will be paused.
 	state - boolean
 
-switchVideo(video)	-	switch on/off video streaming
+switchVideo(state)	-	switch on/off video streaming
 	For example: 
 		//Off video: 
 		Broadcast.switchVideo(false);
@@ -113,10 +113,5 @@ This function returns object:
 
 Media broadcasting constraints - object defaultConstraints
 Is used by default if constraints was not specified in socketConfig
-
-
-
-
-
 
 
